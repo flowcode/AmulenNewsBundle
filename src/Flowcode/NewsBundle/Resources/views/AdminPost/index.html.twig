@@ -1,4 +1,4 @@
-{% extends '::backend.html.twig' %}
+{% extends 'FlowcodeDashboardBundle:Default:layout.html.twig' %}
 
 {% block body -%}
 <div class="page-header">
@@ -6,7 +6,7 @@
     <ul class="list-inline">
         <li>
             <a href="{{ path('admin_post_new') }}" class="btn btn-default btn-sm">
-                <i class="glyphicon glyphicon-plus"></i> New post
+                <i class="fa fa-plus"></i> New post
             </a>
         </li>
     </ul>
