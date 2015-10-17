@@ -1,17 +1,22 @@
 {% extends 'FlowcodeDashboardBundle:Default:layout.html.twig' %}
 
 {% block body -%}
-<div class="page-header">
-    <h1>{{ 'post.edit.title'|trans }}</h1>
+{{ include('FlowcodeNewsBundle:AdminPost:newsHeader.html.twig') }}
+<section class="content">
+<div class="box box-solid">
+    <div class="box-header">
+        <h2 class="box-title">
+            {{ 'post.edit.title'|trans|capitalize }}
+        </h2>
+        <div class="box-tools">
+            <a href="{{ path('admin_post') }}" class="btn btn-link btn-sm">
+                Back to the list
+            </a>
+        </div>
+    </div>
+    <div class="box-body">
+        {{ form(edit_form, { 'style': 'horizontal' }) }}
+    </div>
 </div>
-{{ form(edit_form, { 'style': 'horizontal' }) }}
-
-<ul class="record_actions">
-    <li>
-        <a href="{{ path('admin_post') }}">
-            {{ 'post.edit.back'|trans }}
-        </a>
-    </li>
-    <li>{{ form(delete_form) }}</li>
-</ul>
+</section>
 {% endblock %}

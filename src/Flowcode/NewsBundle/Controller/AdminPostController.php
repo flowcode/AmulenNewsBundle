@@ -189,8 +189,8 @@ class AdminPostController extends Controller {
 
         if ($editForm->isValid()) {
             $em->flush();
-
-            return $this->redirect($this->generateUrl('admin_post_edit', array('id' => $id)));
+            $this->addFlash('success', 'Post edited succedfuly');
+            return $this->redirect($this->generateUrl('admin_post_show', array('id' => $id)));
         }
 
         return array(

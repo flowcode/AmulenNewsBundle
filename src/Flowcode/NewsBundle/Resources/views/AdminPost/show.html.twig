@@ -1,48 +1,65 @@
 {% extends 'FlowcodeDashboardBundle:Default:layout.html.twig' %}
 
 {% block body -%}
-    <h1>Post</h1>
-
-    <table class="record_properties">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ entity.id }}</td>
-            </tr>
-            <tr>
-                <th>Title</th>
-                <td>{{ entity.title }}</td>
-            </tr>
-            <tr>
-                <th>Slug</th>
-                <td>{{ entity.slug }}</td>
-            </tr>
-            <tr>
-                <th>Abstract</th>
-                <td>{{ entity.abstract }}</td>
-            </tr>
-            <tr>
-                <th>Content</th>
-                <td>{{ entity.content }}</td>
-            </tr>
-            <tr>
-                <th>Enabled</th>
-                <td>{{ entity.enabled }}</td>
-            </tr>
-        </tbody>
-    </table>
-
-        <ul class="record_actions">
-    <li>
-        <a href="{{ path('admin_post') }}">
-            Back to the list
-        </a>
-    </li>
-    <li>
-        <a href="{{ path('admin_post_edit', { 'id': entity.id }) }}">
-            Edit
-        </a>
-    </li>
-    <li>{{ form(delete_form) }}</li>
-</ul>
+{{ include('FlowcodeNewsBundle:AdminPost:newsHeader.html.twig') }}
+<section class="content">
+    <div class="row">
+        <div class="col-sm-4">
+            <div class="box box-solid">
+                <div class="box-header">
+                    <h2 class="box-title">
+                        {{ entity.title|trans|capitalize }}
+                    </h2>
+                    <div class="box-tools">
+                        <a href="{{ path('admin_post_edit', {'id':entity.id}) }}" class="btn btn-link btn-sm">
+                            Edit
+                        </a>
+                        <a href="{{ path('admin_post') }}" class="btn btn-link btn-sm">
+                            Back to the list
+                        </a>
+                    </div>
+                </div>
+                <div class="box-body">
+                    <table class="table table-condensed">
+                        <tr>
+                            <td>Slug</td>
+                            <td>{{ entity.slug }}</td>
+                        </tr>
+                        <tr>
+                            <td>Enabled</td>
+                            <td>
+                                {% if entity.enabled %}
+                                {{ 'enabled'|trans }}
+                                {% else %}
+                                {{ 'disabled'|trans }}
+                                {% endif %}
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-8">
+            <div class="box box-solid">
+                <div class="box-header">
+                    <h2 class="box-title">
+                        {{ 'preview'|trans|capitalize }}
+                    </h2>
+                    <div class="box-tools"></div>
+                </div>
+                <div class="box-body">
+                    <h3>
+                        {{ entity.title|capitalize }}
+                    </h3>
+                    <div>
+                        {{ entity.abstract }}
+                    </div>
+                    <div>
+                        {{ entity.content|raw }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 {% endblock %}
