@@ -7,7 +7,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
-use Flowcode\NewsBundle\Entity\Post;
+use Amulen\NewsBundle\Entity\Post;
 use Flowcode\NewsBundle\Form\PostType;
 
 /**
@@ -27,7 +27,7 @@ class AdminPostController extends Controller {
     public function indexAction(Request $request) {
         $page = $request->get("page", 1);
         $em = $this->getDoctrine()->getManager();
-        $dql = "SELECT p FROM FlowcodeNewsBundle:Post p";
+        $dql = "SELECT p FROM AmulenNewsBundle:Post p";
         $query = $em->createQuery($dql);
         $paginator = $this->get('knp_paginator');
         $pagination = $paginator->paginate(
@@ -43,7 +43,7 @@ class AdminPostController extends Controller {
      *
      * @Route("/", name="admin_post_create")
      * @Method("POST")
-     * @Template("FlowcodeNewsBundle:Post:new.html.twig")
+     * @Template("AmulenNewsBundle:Post:new.html.twig")
      */
     public function createAction(Request $request) {
         $entity = new Post();
@@ -109,7 +109,7 @@ class AdminPostController extends Controller {
     public function showAction($id) {
         $em = $this->getDoctrine()->getManager();
 
-        $entity = $em->getRepository('FlowcodeNewsBundle:Post')->find($id);
+        $entity = $em->getRepository('AmulenNewsBundle:Post')->find($id);
 
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find Post entity.');
@@ -133,7 +133,7 @@ class AdminPostController extends Controller {
     public function editAction($id) {
         $em = $this->getDoctrine()->getManager();
 
-        $entity = $em->getRepository('FlowcodeNewsBundle:Post')->find($id);
+        $entity = $em->getRepository('AmulenNewsBundle:Post')->find($id);
 
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find Post entity.');
@@ -177,7 +177,7 @@ class AdminPostController extends Controller {
     public function updateAction(Request $request, $id) {
         $em = $this->getDoctrine()->getManager();
 
-        $entity = $em->getRepository('FlowcodeNewsBundle:Post')->find($id);
+        $entity = $em->getRepository('AmulenNewsBundle:Post')->find($id);
 
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find Post entity.');
@@ -212,7 +212,7 @@ class AdminPostController extends Controller {
 
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
-            $entity = $em->getRepository('FlowcodeNewsBundle:Post')->find($id);
+            $entity = $em->getRepository('AmulenNewsBundle:Post')->find($id);
 
             if (!$entity) {
                 throw $this->createNotFoundException('Unable to find Post entity.');

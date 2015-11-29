@@ -38,7 +38,7 @@ class PostController extends Controller {
         }
 
         $pageNumber = $request->get("page", 1);
-        $posts = $this->getDoctrine()->getRepository("FlowcodeNewsBundle:Post")->findAllEnabled();
+        $posts = $this->getDoctrine()->getRepository("AmulenNewsBundle:Post")->findAllEnabled();
         $paginator = $this->get('knp_paginator');
         $pagination = $paginator->paginate($posts, $this->get('request')->query->get('page', $pageNumber), 2);
 
@@ -57,7 +57,7 @@ class PostController extends Controller {
     public function showAction($id) {
         $em = $this->getDoctrine()->getManager();
 
-        $entity = $em->getRepository('FlowcodeNewsBundle:Post')->find($id);
+        $entity = $em->getRepository('AmulenNewsBundle:Post')->find($id);
 
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find Post entity.');
@@ -70,7 +70,7 @@ class PostController extends Controller {
 
     public function lastsAction() {
         $em = $this->getDoctrine()->getManager();
-        $entities = $em->getRepository('FlowcodeNewsBundle:Post')->findBy(array(), null, 5);
+        $entities = $em->getRepository('AmulenNewsBundle:Post')->findBy(array(), null, 5);
 
         return $this->render(
                         'FlowcodeNewsBundle:Post:lastsWidget.html.twig', array('entities' => $entities)

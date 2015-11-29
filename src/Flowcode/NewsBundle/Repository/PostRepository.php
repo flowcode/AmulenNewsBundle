@@ -1,6 +1,6 @@
 <?php
 
-namespace Flowcode\NewsBundle\Entity;
+namespace Flowcode\NewsBundle\Repository;
 
 use Doctrine\ORM\EntityRepository;
 

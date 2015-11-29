@@ -13,9 +13,6 @@ use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
  * Post
- *
- * @ORM\Table(name="news_post")
- * @ORM\Entity(repositoryClass="PostRepository")
  */
 class Post {
 
@@ -26,58 +23,58 @@ class Post {
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      */
-    private $id;
+    protected $id;
 
     /**
      * @var string
      *
      * @ORM\Column(name="title", type="string", length=255)
      */
-    private $title;
+    protected $title;
 
     /**
      * @var string
-     * 
+     *
      * @Gedmo\Slug(fields={"title"})
      * @ORM\Column(name="slug", type="string", length=255, unique=true)
      */
-    private $slug;
+    protected $slug;
 
     /**
      * @var string
      *
      * @ORM\Column(name="abstract", type="text")
      */
-    private $abstract;
+    protected $abstract;
 
     /**
      * @var string
      *
      * @ORM\Column(name="content", type="text")
      */
-    private $content;
+    protected $content;
 
     /**
      * @var boolean
      *
      * @ORM\Column(name="enabled", type="boolean")
      */
-    private $enabled;
+    protected $enabled;
 
     /**
-     * @ManyToOne(targetEntity="Flowcode\MediaBundle\Entity\Media")
+     * @ManyToOne(targetEntity="Amulen\MediaBundle\Entity\Media")
      * @JoinColumn(name="image_id", referencedColumnName="id", nullable=true)
      * */
-    private $image;
+    protected $image;
 
     /**
-     * @ManyToMany(targetEntity="Flowcode\ClassificationBundle\Entity\Tag")
+     * @ManyToMany(targetEntity="Amulen\ClassificationBundle\Entity\Tag")
      * @JoinTable(name="news_post_tag",
      *      joinColumns={@JoinColumn(name="post_id", referencedColumnName="id")},
      *      inverseJoinColumns={@JoinColumn(name="tag_id", referencedColumnName="id")}
      *      )
      * */
-    private $tags;
+    protected $tags;
 
     /**
      * @var datetime $created
@@ -85,7 +82,7 @@ class Post {
      * @Gedmo\Timestampable(on="create")
      * @ORM\Column(type="datetime")
      */
-    private $created;
+    protected $created;
 
     /**
      * @var datetime $updated
@@ -93,7 +90,7 @@ class Post {
      * @Gedmo\Timestampable(on="update")
      * @ORM\Column(type="datetime")
      */
-    private $updated;
+    protected $updated;
 
     public function __construct() {
         $this->tags = new ArrayCollection();
@@ -102,7 +99,7 @@ class Post {
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId() {
         return $this->id;
@@ -112,7 +109,7 @@ class Post {
      * Set title
      *
      * @param string $title
-     * @return Post
+     * @return \Amulen\NewsBundle\Entity\Post
      */
     public function setTitle($title) {
         $this->title = $title;
@@ -123,7 +120,7 @@ class Post {
     /**
      * Get title
      *
-     * @return string 
+     * @return string
      */
     public function getTitle() {
         return $this->title;
@@ -133,7 +130,7 @@ class Post {
      * Set slug
      *
      * @param string $slug
-     * @return Post
+     *
      */
     public function setSlug($slug) {
         $this->slug = $slug;
@@ -144,7 +141,7 @@ class Post {
     /**
      * Get slug
      *
-     * @return string 
+     * @return string
      */
     public function getSlug() {
         return $this->slug;
@@ -154,7 +151,7 @@ class Post {
      * Set abstract
      *
      * @param string $abstract
-     * @return Post
+     * @return \Amulen\NewsBundle\Entity\Post
      */
     public function setAbstract($abstract) {
         $this->abstract = $abstract;
@@ -165,7 +162,7 @@ class Post {
     /**
      * Get abstract
      *
-     * @return string 
+     * @return string
      */
     public function getAbstract() {
         return $this->abstract;
@@ -175,7 +172,7 @@ class Post {
      * Set content
      *
      * @param string $content
-     * @return Post
+     * @return \Amulen\NewsBundle\Entity\Post
      */
     public function setContent($content) {
         $this->content = $content;
@@ -186,7 +183,7 @@ class Post {
     /**
      * Get content
      *
-     * @return string 
+     * @return string
      */
     public function getContent() {
         return $this->content;
@@ -196,7 +193,7 @@ class Post {
      * Set enabled
      *
      * @param boolean $enabled
-     * @return Post
+     * @return \Amulen\NewsBundle\Entity\Post
      */
     public function setEnabled($enabled) {
         $this->enabled = $enabled;
@@ -207,7 +204,7 @@ class Post {
     /**
      * Get enabled
      *
-     * @return boolean 
+     * @return boolean
      */
     public function getEnabled() {
         return $this->enabled;
@@ -216,8 +213,8 @@ class Post {
     /**
      * Add tags
      *
-     * @param \Flowcode\ClassificationBundle\Entity\Tag $tags
-     * @return Post
+     * @param \Amulen\ClassificationBundle\Entity\Tag $tags
+     * @return \Amulen\NewsBundle\Entity\Post
      */
     public function addTag($tags) {
         $this->tags[] = $tags;
@@ -228,16 +225,16 @@ class Post {
     /**
      * Remove tags
      *
-     * @param \Flowcode\ClassificationBundle\Entity\Tag $tags
+     * @param \Amulen\ClassificationBundle\Entity\Tag $tags
      */
-    public function removeTag(\Flowcode\ClassificationBundle\Entity\Tag $tags) {
+    public function removeTag(\Amulen\ClassificationBundle\Entity\Tag $tags) {
         $this->tags->removeElement($tags);
     }
 
     /**
      * Get tags
      *
-     * @return Collection 
+     * @return Collection
      */
     public function getTags() {
         return $this->tags;
@@ -246,10 +243,10 @@ class Post {
     /**
      * Set image
      *
-     * @param \Flowcode\MediaBundle\Entity\Media $image
-     * @return Post
+     * @param \Amulen\MediaBundle\Entity\Media $image
+     * @return \Amulen\NewsBundle\Entity\Post
      */
-    public function setImage(\Flowcode\MediaBundle\Entity\Media $image = null) {
+    public function setImage(\Amulen\MediaBundle\Entity\Media $image = null) {
         $this->image = $image;
 
         return $this;
@@ -258,7 +255,7 @@ class Post {
     /**
      * Get image
      *
-     * @return \Flowcode\MediaBundle\Entity\Media 
+     * @return \Amulen\MediaBundle\Entity\Media
      */
     public function getImage() {
         return $this->image;
@@ -269,7 +266,7 @@ class Post {
      * Set created
      *
      * @param \DateTime $created
-     * @return Post
+     * @return \Amulen\NewsBundle\Entity\Post
      */
     public function setCreated($created)
     {
@@ -281,7 +278,7 @@ class Post {
     /**
      * Get created
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getCreated()
     {
@@ -292,7 +289,7 @@ class Post {
      * Set updated
      *
      * @param \DateTime $updated
-     * @return Post
+     * @return \Amulen\NewsBundle\Entity\Post
      */
     public function setUpdated($updated)
     {
@@ -304,7 +301,7 @@ class Post {
     /**
      * Get updated
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getUpdated()
     {
