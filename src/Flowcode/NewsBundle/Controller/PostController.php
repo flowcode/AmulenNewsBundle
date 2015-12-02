@@ -27,15 +27,6 @@ class PostController extends Controller {
         $seoPage = $this->container->get('sonata.seo.page');
 
         $em = $this->getDoctrine()->getManager();
-        $page = $em->getRepository('FlowcodePageBundle:Page')->findOneBy(array("name" => "news"));
-        if ($page) {
-            $titleBlock = $page->getBlock("title");
-            if (!is_null($page)) {
-                $seoPage->setTitle($titleBlock->getContent());
-            }
-        } else {
-            $seoPage->setTitle("News");
-        }
 
         $pageNumber = $request->get("page", 1);
         $posts = $this->getDoctrine()->getRepository("AmulenNewsBundle:Post")->findAllEnabled();
@@ -50,14 +41,14 @@ class PostController extends Controller {
     /**
      * Finds and displays a Post entity.
      *
-     * @Route("/{id}", name="post_show")
+     * @Route("/{slug}", name="post_show")
      * @Method("GET")
      * @Template()
      */
-    public function showAction($id) {
+    public function showAction($slug) {
         $em = $this->getDoctrine()->getManager();
 
-        $entity = $em->getRepository('AmulenNewsBundle:Post')->find($id);
+        $entity = $em->getRepository('AmulenNewsBundle:Post')->findOneBy(array("slug" => $slug));
 
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find Post entity.');
