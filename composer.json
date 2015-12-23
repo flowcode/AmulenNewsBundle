@@ -15,7 +15,7 @@
     ],
     "require": {
         "php": ">=5.3.3",
-        "flowcode/amulen-classification-bundle": "~0.1",
+        "flowcode/amulen-classification-bundle": "dev-master",
         "symfony-cmf/seo-bundle": "1.0.*@dev",
         "knplabs/knp-paginator-bundle": "~2.4",
         "egeloen/ckeditor-bundle": "~2.0",
