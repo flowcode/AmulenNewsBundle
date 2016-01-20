@@ -62,7 +62,7 @@ class Post {
     protected $enabled;
 
     /**
-     * @ManyToOne(targetEntity="Amulen\MediaBundle\Entity\Media")
+     * @ManyToOne(targetEntity="Amulen\MediaBundle\Entity\Media", cascade={"persist"})
      * @JoinColumn(name="image_id", referencedColumnName="id", nullable=true)
      * */
     protected $image;
@@ -75,6 +75,13 @@ class Post {
      *      )
      * */
     protected $tags;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="view_count", type="integer")
+     */
+    protected $viewCount;
 
     /**
      * @var datetime $created
@@ -94,6 +101,7 @@ class Post {
 
     public function __construct() {
         $this->tags = new ArrayCollection();
+        $this->viewCount = 0;
     }
 
     /**
@@ -306,5 +314,28 @@ class Post {
     public function getUpdated()
     {
         return $this->updated;
+    }
+
+    /**
+     * Set updated
+     *
+     * @param \DateTime $viewCount
+     * @return \Amulen\NewsBundle\Entity\Post
+     */
+    public function setViewCount($viewCount)
+    {
+        $this->viewCount = $viewCount;
+
+        return $this;
+    }
+
+    /**
+     * Get viewCount
+     *
+     * @return integer
+     */
+    public function getViewCount()
+    {
+        return $this->viewCount;
     }
 }

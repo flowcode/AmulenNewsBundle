@@ -7,6 +7,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\JsonResponse;
 
 /**
  * Post controller.
@@ -14,6 +15,30 @@ use Symfony\Component\HttpFoundation\Request;
  * @Route("/{_locale}/post")
  */
 class PostController extends Controller {
+
+    /**
+     * Finds and displays a Post entity.
+     *
+     * @Route("/tags-with-weight", name="post_tags_weight")
+     * @Method("GET")
+     */
+    public function getTagsWithWeightAction(){
+
+        $em = $this->getDoctrine()->getManager();
+        $entities = $em->getRepository('AmulenClassificationBundle:Tag')->getWithWeight();
+
+        $tagArr = array();
+        foreach ($entities as $tag) {
+            $tagArr[] = array(
+                "text" => $tag["name"],
+                "weight" => $tag["weight"],
+                "link" => $this->generateUrl("page", array("slug" => "news", "tag" => $tag["name"])),
+            );
+        }
+
+        return new JsonResponse($tagArr, 200);
+    }
+
 
     /**
      * Lists all Post entities.
@@ -31,7 +56,7 @@ class PostController extends Controller {
         $pageNumber = $request->get("page", 1);
         $posts = $this->getDoctrine()->getRepository("AmulenNewsBundle:Post")->findAllEnabled();
         $paginator = $this->get('knp_paginator');
-        $pagination = $paginator->paginate($posts, $this->get('request')->query->get('page', $pageNumber), 2);
+        $pagination = $paginator->paginate($posts, $this->get('request')->query->get('page', $pageNumber), 10);
 
         return array(
             'pagination' => $pagination,
@@ -67,5 +92,6 @@ class PostController extends Controller {
                         'FlowcodeNewsBundle:Post:lastsWidget.html.twig', array('entities' => $entities)
         );
     }
+
 
 }

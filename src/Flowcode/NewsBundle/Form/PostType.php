@@ -5,6 +5,7 @@ namespace Flowcode\NewsBundle\Form;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use Flowcode\MediaBundle\Form\MediaType;
 
 class PostType extends AbstractType {
 
@@ -15,7 +16,7 @@ class PostType extends AbstractType {
     public function buildForm(FormBuilderInterface $builder, array $options) {
         $builder
                 ->add('title')
-                ->add('image')
+                ->add('image', new MediaType())
                 ->add('abstract')
                 ->add('content', 'ckeditor')
                 ->add('enabled', null, array('required' => false,))
