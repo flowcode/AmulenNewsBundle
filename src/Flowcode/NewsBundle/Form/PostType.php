@@ -16,11 +16,12 @@ class PostType extends AbstractType {
     public function buildForm(FormBuilderInterface $builder, array $options) {
         $builder
                 ->add('title')
-                ->add('image', new MediaType())
+                ->add('image')
                 ->add('abstract')
                 ->add('content', 'ckeditor')
-                ->add('enabled', null, array('required' => false,))
+                ->add('enabled', null, array('required' => false))
                 ->add('tags')
+                ->add('published')
         ;
     }
 

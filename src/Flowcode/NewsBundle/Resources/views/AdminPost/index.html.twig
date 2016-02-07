@@ -15,32 +15,19 @@
             <table class="table table-condensed">
                 <thead>
                     <tr>
-                        <th>{{ knp_pagination_sortable(pagination, 'Id', 'p.id') }}</th>
                         <th{% if pagination.isSorted('p.Title') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(pagination, 'Title', 'p.title') }}</th>
-                        <th>Slug</th>
-                        <th>Abstract</th>
                         <th>Enabled</th>
-                        <th>Actions</th>
+                        <th {% if pagination.isSorted('p.Title') %} class="sorted"{% endif %}>
+                            {{ knp_pagination_sortable(pagination, 'Published On', 'p.published') }}
+                        </th>
                     </tr>
                 </thead>
                 <tbody>
                     {% for entity in pagination %}
                     <tr>
-                        <td><a href="{{ path('admin_post_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
-                        <td>{{ entity.title }}</td>
-                        <td>{{ entity.slug }}</td>
-                        <td>{{ entity.abstract }}</td>
+                        <td><a href="{{ path('admin_post_show', { 'id': entity.id }) }}">{{ entity.title }}</a></td>
                         <td>{{ entity.enabled ? 'yes' : 'no' }}</td>
-                        <td>
-                            <ul class="list-inline">
-                                <li>
-                                    <a href="{{ path('admin_post_show', { 'id': entity.id }) }}">{{ "show"|trans }}</a>
-                                </li>
-                                <li>
-                                    <a href="{{ path('admin_post_edit', { 'id': entity.id }) }}">{{ "edit"|trans }}</a>
-                                </li>
-                            </ul>
-                        </td>
+                        <td>{{ entity.published|date('Y/m/d')}}</td>
                     </tr>
                     {% endfor %}
                 </tbody>

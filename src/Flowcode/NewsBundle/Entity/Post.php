@@ -62,9 +62,8 @@ class Post {
     protected $enabled;
 
     /**
-     * @ManyToOne(targetEntity="Amulen\MediaBundle\Entity\Media", cascade={"persist"})
-     * @JoinColumn(name="image_id", referencedColumnName="id", nullable=true)
-     * */
+     * @ORM\Column(name="image", type="string", length=255, nullable=true)
+     */
     protected $image;
 
     /**
@@ -82,6 +81,13 @@ class Post {
      * @ORM\Column(name="view_count", type="integer")
      */
     protected $viewCount;
+
+    /**
+     * @var datetime $published
+     *
+     * @ORM\Column(type="datetime")
+     */
+    protected $published;
 
     /**
      * @var datetime $created
@@ -102,6 +108,7 @@ class Post {
     public function __construct() {
         $this->tags = new ArrayCollection();
         $this->viewCount = 0;
+        $this->published = new \DateTime();
     }
 
     /**
@@ -249,24 +256,19 @@ class Post {
     }
 
     /**
-     * Set image
-     *
-     * @param \Amulen\MediaBundle\Entity\Media $image
-     * @return \Amulen\NewsBundle\Entity\Post
+     * @return mixed
      */
-    public function setImage(\Amulen\MediaBundle\Entity\Media $image = null) {
-        $this->image = $image;
-
-        return $this;
+    public function getImage()
+    {
+        return $this->image;
     }
 
     /**
-     * Get image
-     *
-     * @return \Amulen\MediaBundle\Entity\Media
+     * @param mixed $image
      */
-    public function getImage() {
-        return $this->image;
+    public function setImage($image)
+    {
+        $this->image = $image;
     }
 
 
@@ -338,4 +340,22 @@ class Post {
     {
         return $this->viewCount;
     }
+
+    /**
+     * @return datetime
+     */
+    public function getPublished()
+    {
+        return $this->published;
+    }
+
+    /**
+     * @param datetime $published
+     */
+    public function setPublished($published)
+    {
+        $this->published = $published;
+    }
+
+
 }

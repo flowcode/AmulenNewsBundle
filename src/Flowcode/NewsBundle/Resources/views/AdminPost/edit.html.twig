@@ -22,12 +22,12 @@
         </div>
     </div>
     <div class="box-body">
-        {{ form_start(form) }}
+        {{ form_start(edit_form) }}
         <div class="form-group">
-            {{ form_label(form.image.path) }}
+            {{ form_label(edit_form.image) }}
             <div class="col-lg-5">
-                {{ form_widget(form.image.path) }}
-                {{ form_errors(form.image.path) }}
+                {{ form_widget(edit_form.image) }}
+                {{ form_errors(edit_form.image) }}
             </div>
             <div class="col-lg-4">
                 <button class="btn btn-default" type="button" id="browser-trigger">
@@ -36,7 +36,7 @@
                 </button>
             </div>
         </div>
-        {{ form_end(form) }}
+        {{ form_end(edit_form) }}
     </div>
 </div>
 </section>
@@ -53,7 +53,7 @@
         $('<div id="editor" />').dialogelfinder({
             url : '{{ path('ef_connect') }}',
             getFileCallback: function(file) {
-                $("#flowcode_newsbundle_post_image_path").val(file.path);
+                $("#flowcode_newsbundle_post_image").val(file.path);
                 $('#editor').dialogelfinder('close');
             }
         });
