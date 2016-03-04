@@ -7,7 +7,7 @@
         <div class="box-header">
             <div class="box-tools">
                 <a href="{{ path('admin_post_new') }}" class="btn btn-link btn-sm">
-                    <i class="fa fa-plus"></i> New post
+                    <i class="fa fa-plus"></i> {{ "New post"|trans }}
                 </a>
             </div>
         </div>
@@ -15,10 +15,10 @@
             <table class="table table-condensed">
                 <thead>
                     <tr>
-                        <th{% if pagination.isSorted('p.Title') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(pagination, 'Title', 'p.title') }}</th>
-                        <th>Enabled</th>
+                        <th{% if pagination.isSorted('p.Title') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(pagination, 'Title'|trans, 'p.title') }}</th>
+                        <th>{{ "Enabled"|trans }}</th>
                         <th {% if pagination.isSorted('p.Title') %} class="sorted"{% endif %}>
-                            {{ knp_pagination_sortable(pagination, 'Published On', 'p.published') }}
+                            {{ knp_pagination_sortable(pagination, 'Published On'|trans, 'p.published') }}
                         </th>
                     </tr>
                 </thead>

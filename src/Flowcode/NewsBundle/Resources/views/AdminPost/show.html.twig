@@ -12,21 +12,21 @@
                     </h2>
                     <div class="box-tools">
                         <a href="{{ path('admin_post_edit', {'id':entity.id}) }}" class="btn btn-link btn-sm">
-                            Edit
+                            {{ 'Edit'|trans }}
                         </a>
                         <a href="{{ path('admin_post') }}" class="btn btn-link btn-sm">
-                            Back to the list
+                            {{ 'Back to the list'|trans }}
                         </a>
                     </div>
                 </div>
                 <div class="box-body">
                     <table class="table table-condensed">
                         <tr>
-                            <td>Slug</td>
+                            <td>{{ 'Slug'|trans }}</td>
                             <td>{{ entity.slug }}</td>
                         </tr>
                         <tr>
-                            <td>Enabled</td>
+                            <td>{{ 'Enabled'|trans }}</td>
                             <td>
                                 {% if entity.enabled %}
                                 {{ 'enabled'|trans }}

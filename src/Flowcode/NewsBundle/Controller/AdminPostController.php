@@ -43,7 +43,7 @@ class AdminPostController extends Controller {
      *
      * @Route("/", name="admin_post_create")
      * @Method("POST")
-     * @Template("AmulenNewsBundle:Post:new.html.twig")
+     * @Template("FlowcodeNewsBundle:AdminPost:new.html.twig")
      */
     public function createAction(Request $request) {
         $entity = new Post();
@@ -56,6 +56,10 @@ class AdminPostController extends Controller {
             $em->flush();
 
             return $this->redirect($this->generateUrl('admin_post_show', array('id' => $entity->getId())));
+        } else {
+            $this->get('session')->getFlashBag()->add(
+                    'warning', $this->get('translator')->trans('save_fail')
+            );
         }
 
         return array(

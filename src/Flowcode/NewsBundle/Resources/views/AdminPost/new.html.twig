@@ -13,16 +13,17 @@
         <div class="box box-solid">
             <div class="box-header">
                 <h2 class="box-title">
-                    {{ 'post.create.title'|trans|capitalize }}
+                    {{ 'new post'|trans|capitalize }}
                 </h2>
                 <div class="box-tools">
                     <a href="{{ path('admin_post') }}" class="btn btn-link btn-sm">
-                        Back to the list
+                        {{ 'Back to the list'|trans }}
                     </a>
                 </div>
             </div>
             <div class="box-body">
                 {{ form_start(form) }}
+                {{ form_row(form.title) }}
                 <div class="form-group">
                     {{ form_label(form.image) }}
                     <div class="col-lg-5">

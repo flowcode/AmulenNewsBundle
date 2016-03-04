@@ -17,7 +17,7 @@
         </h2>
         <div class="box-tools">
             <a href="{{ path('admin_post') }}" class="btn btn-link btn-sm">
-                Back to the list
+                {{ 'Back to the list'|trans }}
             </a>
         </div>
     </div>
@@ -37,6 +37,7 @@
             </div>
         </div>
         {{ form_end(edit_form) }}
+        {{ form(delete_form) }}
     </div>
 </div>
 </section>

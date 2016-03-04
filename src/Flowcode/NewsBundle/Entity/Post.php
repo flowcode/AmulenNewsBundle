@@ -10,6 +10,7 @@ use Doctrine\ORM\Mapping\JoinTable;
 use Doctrine\ORM\Mapping\ManyToMany;
 use Doctrine\ORM\Mapping\ManyToOne;
 use Gedmo\Mapping\Annotation as Gedmo;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Post
@@ -50,6 +51,7 @@ class Post {
     /**
      * @var string
      *
+     * @Assert\NotBlank()
      * @ORM\Column(name="content", type="text")
      */
     protected $content;

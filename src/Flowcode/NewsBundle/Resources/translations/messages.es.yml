@@ -5,6 +5,8 @@ Content: Contenido
 Enabled: Activo
 Update: Actualizar
 Delete: Eliminar
+Published: "Fecha de publicación"
+preview: Visualización
 
 post:
     edit:
@@ -25,3 +27,6 @@ post:
 
 more news: "más noticias"
 lastest news: últimas noticias
+"New post": "Nuevo Post"
+"new post": "Nuevo Post"
+'Published On': 'Fecha de publicación'
