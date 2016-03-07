@@ -6,6 +6,10 @@ admin_post:
     resource: "@FlowcodeNewsBundle/Controller/AdminPostController.php"
     type:     annotation
 
+admin_news_category:
+    resource: "@FlowcodeNewsBundle/Controller/AdminCategoryController.php"
+    type:     annotation
+
 post:
     resource: "@FlowcodeNewsBundle/Controller/PostController.php"
     type:     annotation

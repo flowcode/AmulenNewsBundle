@@ -1,0 +1,41 @@
+{% extends 'FlowcodeDashboardBundle:Default:layout.html.twig' %}
+
+{% block body -%}
+{{ include('FlowcodeNewsBundle:AdminPost:newsHeader.html.twig') }}
+<section class="content">
+    <div class="box box-solid">
+        <div class="box-header">
+            <h3 class="box-title">{{ "Children categorys"|trans|title }}</h3>
+<div class="row">
+    <div class="col-sm-4">
+        <ul class="list-unstyled">
+            {% if parent.getParent.id is defined %}
+            <li>
+                <a href="{{ path('admin_news_category_children', { 'id': parent.getParent.id }) }}" class="btn btn-primary btn-block">
+                    <i class="fa fa-arrow-left"></i> {{ "previous level"|trans }}
+                </a>
+            </li>
+            {% endif %}
+        </ul>
+    </div>
+    <div class="col-sm-4">
+        <ul class="list-unstyled">
+        {% for entity in entities %}
+            <li>
+                <a href="{{ path('admin_news_category_children', { 'id': entity.id }) }}" class="btn btn-default btn-block">
+                {{ entity.name }}
+                </a>
+            </li>
+        {% endfor %}
+            <li>
+                <a href="{{ path('admin_news_category_new', { 'parent_id': parent.id }) }}" class="btn btn-primary btn-block">
+                    <i class="fa fa-plus"></i> {{ "add here"|trans }}
+                </a>
+            </li>
+        </ul>
+    </div>
+</div>
+</div>
+    </div>
+</section>
+{% endblock %}

@@ -76,7 +76,7 @@ class AdminPostController extends Controller {
      * @return \Symfony\Component\Form\Form The form
      */
     private function createCreateForm(Post $entity) {
-        $form = $this->createForm(new PostType(), $entity, array(
+        $form = $this->createForm($this->get("news.form.type.post"), $entity, array(
             'action' => $this->generateUrl('admin_post_create'),
             'method' => 'POST',
         ));
@@ -161,7 +161,7 @@ class AdminPostController extends Controller {
      * @return \Symfony\Component\Form\Form The form
      */
     private function createEditForm(Post $entity) {
-        $form = $this->createForm(new PostType(), $entity, array(
+        $form = $this->createForm($this->get("news.form.type.post"), $entity, array(
             'action' => $this->generateUrl('admin_post_update', array('id' => $entity->getId())),
             'method' => 'PUT',
         ));

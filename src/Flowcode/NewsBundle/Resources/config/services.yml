@@ -2,6 +2,9 @@ parameters:
 #    flowcode_news.example.class: Flowcode\NewsBundle\Example
 
 services:
-#    flowcode_news.example:
-#        class: %flowcode_news.example.class%
-#        arguments: [@service_id, "plain_value", %parameter%]
+
+    news.form.type.post:
+        class: Flowcode\NewsBundle\Form\PostType
+        arguments: ['@amulen.classification.category']
+        tags:
+            - { name: form.type, alias: post_type }

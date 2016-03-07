@@ -78,6 +78,12 @@ class Post {
     protected $tags;
 
     /**
+     * @ManyToOne(targetEntity="Amulen\ClassificationBundle\Entity\Category")
+     * @JoinColumn(name="category_id", referencedColumnName="id")
+     * */
+    protected $category;
+
+    /**
      * @var integer
      *
      * @ORM\Column(name="view_count", type="integer")
@@ -359,5 +365,25 @@ class Post {
         $this->published = $published;
     }
 
+    /**
+     * Set category
+     *
+     * @param \Amulen\ClassificationBundle\Entity\Category $category
+     * @return Post
+     */
+    public function setCategory(\Amulen\ClassificationBundle\Entity\Category $category = null) {
+        $this->category = $category;
+
+        return $this;
+    }
+
+    /**
+     * Get category
+     *
+     * @return \Amulen\ClassificationBundle\Entity\Category
+     */
+    public function getCategory() {
+        return $this->category;
+    }
 
 }

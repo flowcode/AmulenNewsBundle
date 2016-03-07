@@ -16,6 +16,7 @@
                 <thead>
                     <tr>
                         <th{% if pagination.isSorted('p.Title') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(pagination, 'Title'|trans, 'p.title') }}</th>
+                        <th>{{ "Category"|trans }}</th>
                         <th>{{ "Enabled"|trans }}</th>
                         <th {% if pagination.isSorted('p.Title') %} class="sorted"{% endif %}>
                             {{ knp_pagination_sortable(pagination, 'Published On'|trans, 'p.published') }}
@@ -26,6 +27,7 @@
                     {% for entity in pagination %}
                     <tr>
                         <td><a href="{{ path('admin_post_show', { 'id': entity.id }) }}">{{ entity.title }}</a></td>
+                        <td>{{ entity.category}}</td>
                         <td>{{ entity.enabled ? 'yes' : 'no' }}</td>
                         <td>{{ entity.published|date('Y/m/d')}}</td>
                     </tr>

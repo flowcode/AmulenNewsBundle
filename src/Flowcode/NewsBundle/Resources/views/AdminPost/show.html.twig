@@ -25,6 +25,12 @@
                             <td>{{ 'Slug'|trans }}</td>
                             <td>{{ entity.slug }}</td>
                         </tr>
+                        {% if entity.category is defined %}
+                            <tr>
+                                <td>{{ 'category'|trans }}</td>
+                                <td>{{ entity.category }}</td>
+                            </tr>
+                        {% endif %}
                         <tr>
                             <td>{{ 'Enabled'|trans }}</td>
                             <td>
