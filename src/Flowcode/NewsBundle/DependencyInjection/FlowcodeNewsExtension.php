@@ -21,8 +21,26 @@ class FlowcodeNewsExtension extends Extension
     {
         $configuration = new Configuration();
         $config = $this->processConfiguration($configuration, $configs);
+        $this->bindParameters($container, $this->getAlias(), $config);
 
         $loader = new Loader\YamlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
         $loader->load('services.yml');
+    }
+
+    /**
+     * Binds the params from config
+     *
+     * @param ContainerBuilder $container Containerbuilder
+     * @param string           $name      Alias name
+     * @param array            $config    Configuration Array
+     */
+    public function bindParameters(ContainerBuilder $container, $name, $config) {
+        if (is_array($config) && empty($config[0])) {
+            foreach ($config as $key => $value) {
+                $this->bindParameters($container, $name . '.' . $key, $value);
+            }
+        } else {
+            $container->setParameter($name, $config);
+        }
     }
 }

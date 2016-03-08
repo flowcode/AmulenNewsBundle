@@ -142,7 +142,6 @@ class AdminPostController extends Controller {
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find Post entity.');
         }
-
         $editForm = $this->createEditForm($entity);
         $deleteForm = $this->createDeleteForm($id);
 
@@ -176,7 +175,7 @@ class AdminPostController extends Controller {
      *
      * @Route("/{id}", name="admin_post_update")
      * @Method("PUT")
-     * @Template("FlowcodeNewsBundle:Post:edit.html.twig")
+     * @Template("FlowcodeNewsBundle:AdminPost:edit.html.twig")
      */
     public function updateAction(Request $request, $id) {
         $em = $this->getDoctrine()->getManager();
