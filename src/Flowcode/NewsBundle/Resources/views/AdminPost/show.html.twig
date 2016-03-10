@@ -6,11 +6,11 @@
     <div class="row">
         <div class="col-sm-4">
             <div class="box box-solid">
-                <div class="box-header">
-                    <h2 class="box-title">
+                <div class="box-header row">
+                    <h2 class="box-title col-sm-8">
                         {{ entity.title|trans|capitalize }}
                     </h2>
-                    <div class="box-tools">
+                    <div class="box-tools col-sm-4">
                         <a href="{{ path('admin_post_edit', {'id':entity.id}) }}" class="btn btn-link btn-sm">
                             {{ 'Edit'|trans }}
                         </a>
