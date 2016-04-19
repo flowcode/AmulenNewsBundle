@@ -69,6 +69,18 @@ class Post {
     protected $image;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="video", type="string", length=255, nullable=true)
+     */
+    protected $video;
+        /**
+     * @var string
+     *
+     * @ORM\Column(name="video_code", type="string", length=255, nullable=true)
+     */
+    protected $videoCode;
+    /**
      * @ManyToMany(targetEntity="Amulen\ClassificationBundle\Entity\Tag")
      * @JoinTable(name="news_post_tag",
      *      joinColumns={@JoinColumn(name="post_id", referencedColumnName="id")},
@@ -385,5 +397,51 @@ class Post {
     public function getCategory() {
         return $this->category;
     }
+    /**
+     * Set video
+     *
+     * @param string $video
+     *
+     * @return Post
+     */
+    public function setVideo($video)
+    {
+        $this->video = $video;
 
+        return $this;
+    }
+
+    /**
+     * Get video
+     *
+     * @return string
+     */
+    public function getVideo()
+    {
+        return $this->video;
+    }
+    
+    /**
+     * Set videoCode
+     *
+     * @param string $videoCode
+     *
+     * @return Post
+     */
+    public function setVideoCode($videoCode)
+    {
+        $this->videoCode = $videoCode;
+
+        return $this;
+    }
+
+    /**
+     * Get videoCode
+     *
+     * @return string
+     */
+    public function getVideoCode()
+    {
+        return $this->videoCode;
+    }
 }

@@ -52,6 +52,7 @@ class AdminPostController extends Controller {
 
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
+            $this->processVideo($entity);
             $em->persist($entity);
             $em->flush();
 
@@ -191,6 +192,7 @@ class AdminPostController extends Controller {
         $editForm->handleRequest($request);
 
         if ($editForm->isValid()) {
+            $this->processVideo($entity);
             $em->flush();
             $this->addFlash('success', 'Post edited succedfuly');
             return $this->redirect($this->generateUrl('admin_post_show', array('id' => $id)));
@@ -201,6 +203,19 @@ class AdminPostController extends Controller {
             'edit_form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
         );
+    }
+    public function processVideo($entity){
+        
+        if($entity->getVideo() != ""){
+            $ytarray=explode("/", $entity->getVideo());
+            $ytendstring=end($ytarray);
+            $ytendarray=explode("?v=", $ytendstring);
+            $ytendstring=end($ytendarray);
+            $ytendarray=explode("&", $ytendstring);
+            $ytcode=$ytendarray[0];
+            $entity->setVideoCode($ytcode);
+            
+        }
     }
 
     /**

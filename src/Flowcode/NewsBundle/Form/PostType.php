@@ -27,6 +27,7 @@ class PostType extends AbstractType {
         $builder
                 ->add('title')
                 ->add('image')
+                ->add('video')
                 ->add('abstract')
                 ->add('category', EntityType::class, array(
                     'class' => "Amulen\ClassificationBundle\Entity\Category",
