@@ -125,10 +125,19 @@ class Post {
      */
     protected $updated;
 
+   /**
+     * @var integer
+     *
+     * @Gedmo\SortablePosition
+     * @ORM\Column(name="position", type="smallint")
+     */
+    protected $position;
+
     public function __construct() {
         $this->tags = new ArrayCollection();
         $this->viewCount = 0;
         $this->published = new \DateTime();
+        $this->position = 0;
     }
 
     /**
@@ -443,5 +452,26 @@ class Post {
     public function getVideoCode()
     {
         return $this->videoCode;
+    }
+
+    /**
+     * Set position
+     *
+     * @param integer $position
+     * @return LawCategory
+     */
+    public function setPosition($position) {
+        $this->position = $position;
+
+        return $this;
+    }
+
+    /**
+     * Get position
+     *
+     * @return integer
+     */
+    public function getPosition() {
+        return $this->position;
     }
 }

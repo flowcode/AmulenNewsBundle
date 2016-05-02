@@ -45,6 +45,7 @@ class PostType extends AbstractType {
                 ->add('enabled', null, array('required' => false))
                 ->add('tags')
                 ->add('published')
+                ->add('position')
         ;
     }
 
