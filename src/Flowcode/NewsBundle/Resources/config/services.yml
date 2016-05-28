@@ -8,3 +8,15 @@ services:
         arguments: ['@amulen.classification.category']
         tags:
             - { name: form.type, alias: post_type }
+
+    amulen.news.showmenu_eventsubscriber:
+        class: Flowcode\NewsBundle\Event\ShowMenuSubscriber
+        arguments: ['@router', '@translator']
+        tags:
+            - { name: kernel.event_subscriber }
+
+    amulen.news.listplugins_eventsubscriber:
+        class: Flowcode\NewsBundle\Event\ListPluginsSubscriber
+        arguments: ['@router', '@translator']
+        tags:
+            - { name: kernel.event_subscriber }
