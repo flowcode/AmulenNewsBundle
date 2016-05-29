@@ -15,7 +15,8 @@ use Symfony\Component\Validator\Constraints as Assert;
 /**
  * Post
  */
-class Post {
+class Post
+{
 
     /**
      * @var integer
@@ -74,7 +75,7 @@ class Post {
      * @ORM\Column(name="video", type="string", length=255, nullable=true)
      */
     protected $video;
-        /**
+    /**
      * @var string
      *
      * @ORM\Column(name="video_code", type="string", length=255, nullable=true)
@@ -125,7 +126,15 @@ class Post {
      */
     protected $updated;
 
-   /**
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="type", type="string", length=255, nullable=true)
+     */
+    protected $type;
+
+
+    /**
      * @var integer
      *
      * @Gedmo\SortablePosition
@@ -133,7 +142,8 @@ class Post {
      */
     protected $position;
 
-    public function __construct() {
+    public function __construct()
+    {
         $this->tags = new ArrayCollection();
         $this->viewCount = 0;
         $this->published = new \DateTime();
@@ -145,7 +155,8 @@ class Post {
      *
      * @return integer
      */
-    public function getId() {
+    public function getId()
+    {
         return $this->id;
     }
 
@@ -155,7 +166,8 @@ class Post {
      * @param string $title
      * @return \Amulen\NewsBundle\Entity\Post
      */
-    public function setTitle($title) {
+    public function setTitle($title)
+    {
         $this->title = $title;
 
         return $this;
@@ -166,7 +178,8 @@ class Post {
      *
      * @return string
      */
-    public function getTitle() {
+    public function getTitle()
+    {
         return $this->title;
     }
 
@@ -176,7 +189,8 @@ class Post {
      * @param string $slug
      *
      */
-    public function setSlug($slug) {
+    public function setSlug($slug)
+    {
         $this->slug = $slug;
 
         return $this;
@@ -187,7 +201,8 @@ class Post {
      *
      * @return string
      */
-    public function getSlug() {
+    public function getSlug()
+    {
         return $this->slug;
     }
 
@@ -197,7 +212,8 @@ class Post {
      * @param string $abstract
      * @return \Amulen\NewsBundle\Entity\Post
      */
-    public function setAbstract($abstract) {
+    public function setAbstract($abstract)
+    {
         $this->abstract = $abstract;
 
         return $this;
@@ -208,7 +224,8 @@ class Post {
      *
      * @return string
      */
-    public function getAbstract() {
+    public function getAbstract()
+    {
         return $this->abstract;
     }
 
@@ -218,7 +235,8 @@ class Post {
      * @param string $content
      * @return \Amulen\NewsBundle\Entity\Post
      */
-    public function setContent($content) {
+    public function setContent($content)
+    {
         $this->content = $content;
 
         return $this;
@@ -229,7 +247,8 @@ class Post {
      *
      * @return string
      */
-    public function getContent() {
+    public function getContent()
+    {
         return $this->content;
     }
 
@@ -239,7 +258,8 @@ class Post {
      * @param boolean $enabled
      * @return \Amulen\NewsBundle\Entity\Post
      */
-    public function setEnabled($enabled) {
+    public function setEnabled($enabled)
+    {
         $this->enabled = $enabled;
 
         return $this;
@@ -250,7 +270,8 @@ class Post {
      *
      * @return boolean
      */
-    public function getEnabled() {
+    public function getEnabled()
+    {
         return $this->enabled;
     }
 
@@ -260,7 +281,8 @@ class Post {
      * @param \Amulen\ClassificationBundle\Entity\Tag $tags
      * @return \Amulen\NewsBundle\Entity\Post
      */
-    public function addTag($tags) {
+    public function addTag($tags)
+    {
         $this->tags[] = $tags;
 
         return $this;
@@ -271,7 +293,8 @@ class Post {
      *
      * @param \Amulen\ClassificationBundle\Entity\Tag $tags
      */
-    public function removeTag(\Amulen\ClassificationBundle\Entity\Tag $tags) {
+    public function removeTag(\Amulen\ClassificationBundle\Entity\Tag $tags)
+    {
         $this->tags->removeElement($tags);
     }
 
@@ -280,7 +303,8 @@ class Post {
      *
      * @return Collection
      */
-    public function getTags() {
+    public function getTags()
+    {
         return $this->tags;
     }
 
@@ -392,7 +416,8 @@ class Post {
      * @param \Amulen\ClassificationBundle\Entity\Category $category
      * @return Post
      */
-    public function setCategory(\Amulen\ClassificationBundle\Entity\Category $category = null) {
+    public function setCategory(\Amulen\ClassificationBundle\Entity\Category $category = null)
+    {
         $this->category = $category;
 
         return $this;
@@ -403,9 +428,11 @@ class Post {
      *
      * @return \Amulen\ClassificationBundle\Entity\Category
      */
-    public function getCategory() {
+    public function getCategory()
+    {
         return $this->category;
     }
+
     /**
      * Set video
      *
@@ -429,7 +456,7 @@ class Post {
     {
         return $this->video;
     }
-    
+
     /**
      * Set videoCode
      *
@@ -460,7 +487,8 @@ class Post {
      * @param integer $position
      * @return LawCategory
      */
-    public function setPosition($position) {
+    public function setPosition($position)
+    {
         $this->position = $position;
 
         return $this;
@@ -471,7 +499,26 @@ class Post {
      *
      * @return integer
      */
-    public function getPosition() {
+    public function getPosition()
+    {
         return $this->position;
     }
+
+    /**
+     * @return string
+     */
+    public function getType()
+    {
+        return $this->type;
+    }
+
+    /**
+     * @param string $type
+     */
+    public function setType($type)
+    {
+        $this->type = $type;
+    }
+    
+
 }

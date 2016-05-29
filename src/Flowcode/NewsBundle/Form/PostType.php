@@ -44,6 +44,7 @@ class PostType extends AbstractType {
                 ->add('content', 'ckeditor')
                 ->add('enabled', null, array('required' => false))
                 ->add('tags')
+                ->add('type', null, array('required' => false))
                 ->add('published')
                 ->add('position')
         ;
