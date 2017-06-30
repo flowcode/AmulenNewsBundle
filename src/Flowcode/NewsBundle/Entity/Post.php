@@ -11,6 +11,7 @@ use Doctrine\ORM\Mapping\ManyToMany;
 use Doctrine\ORM\Mapping\ManyToOne;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Symfony\Component\Validator\Constraints as Assert;
+use JMS\Serializer\Annotation\Groups;
 
 /**
  * Post
@@ -24,6 +25,7 @@ class Post
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
+     * @Groups({"public_api"})
      */
     protected $id;
 
@@ -31,6 +33,7 @@ class Post
      * @var string
      *
      * @ORM\Column(name="title", type="string", length=255)
+     * @Groups({"public_api"})
      */
     protected $title;
 
@@ -39,6 +42,7 @@ class Post
      *
      * @Gedmo\Slug(fields={"title"})
      * @ORM\Column(name="slug", type="string", length=255, unique=true)
+     * @Groups({"public_api"})
      */
     protected $slug;
 
@@ -46,6 +50,7 @@ class Post
      * @var string
      *
      * @ORM\Column(name="abstract", type="text")
+     * @Groups({"public_api"})
      */
     protected $abstract;
 
@@ -61,11 +66,13 @@ class Post
      * @var boolean
      *
      * @ORM\Column(name="enabled", type="boolean")
+     * @Groups({"public_api"})
      */
     protected $enabled;
 
     /**
      * @ORM\Column(name="image", type="string", length=255, nullable=true)
+     * @Groups({"public_api"})
      */
     protected $image;
 
@@ -107,6 +114,7 @@ class Post
      * @var datetime $published
      *
      * @ORM\Column(type="datetime")
+     * @Groups({"public_api"})
      */
     protected $published;
 
@@ -115,6 +123,7 @@ class Post
      *
      * @Gedmo\Timestampable(on="create")
      * @ORM\Column(type="datetime")
+     * @Groups({"public_api"})
      */
     protected $created;
 
@@ -123,6 +132,7 @@ class Post
      *
      * @Gedmo\Timestampable(on="update")
      * @ORM\Column(type="datetime")
+     * @Groups({"public_api"})
      */
     protected $updated;
 
@@ -130,6 +140,7 @@ class Post
      * @var string
      *
      * @ORM\Column(name="type", type="string", length=255, nullable=true)
+     * @Groups({"public_api"})
      */
     protected $type;
 
